@@ -96,5 +96,5 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 --conda env
 
-vim.keymap.set("n", "<leader>ce", ":CondaActivate<CR>", { buffer = 0 })
-vim.keymap.set("n", "<leader>cd", ":CondaDeactivate<CR>", { buffer = 0 })
+vim.keymap.set("n", "<leader>ce", ":CondaActivate<CR>")
+vim.keymap.set("n", "<leader>cd", ":CondaDeactivate<CR>")
