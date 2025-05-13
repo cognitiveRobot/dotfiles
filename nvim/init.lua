@@ -70,6 +70,7 @@ require("lazy").setup({
 	require("plugins.noice"),
 	require("plugins.iron"),
 	require("plugins.toggleterm"),
+	require("plugins.conda"),
 })
 
 --Cursor highlight didn't work
@@ -92,3 +93,8 @@ function _G.set_terminal_keymaps()
 	vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+--conda env
+
+vim.keymap.set("n", "<leader>ce", ":CondaActivate<CR>", { buffer = 0 })
+vim.keymap.set("n", "<leader>cd", ":CondaDeactivate<CR>", { buffer = 0 })

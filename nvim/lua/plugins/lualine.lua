@@ -25,7 +25,8 @@ return {
 			sources = { "nvim_diagnostic" },
 			sections = { "error", "warn" },
 			symbols = { error = " ", warn = " ", info = " ", hint = " " },
-			colored = false,
+			-- symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+			colored = true,
 			update_in_insert = false,
 			always_visible = false,
 			cond = hide_in_width,
@@ -33,10 +34,21 @@ return {
 
 		local diff = {
 			"diff",
-			colored = false,
-			symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+			-- colored = false,
+			colored = true, -- Displays a colored diff status if set to true
+			symbols = { added = "+", modified = "~", removed = "-" }, -- Changes the symbols used by the diff.
+			source = nil, -- A function that works as a data source for diff.
+			-- It must return a table as such:
+			--   { added = add_count, modified = modified_count, removed = removed_count }
+			-- or nil on failure. count <= 0 won't be displayed.
+			-- symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
 			cond = hide_in_width,
 		}
+
+		local env_name = function()
+			local name = vim.env.CONDA_DEFAULT_ENV
+			return "(" .. name .. ")"
+		end
 
 		require("lualine").setup({
 			options = {
@@ -47,17 +59,17 @@ return {
 				-- https://www.nerdfonts.com/cheat-sheet
 				--        
 				section_separators = { left = "", right = "" },
-				component_separators = { left = "", right = "" },
+				-- component_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 				disabled_filetypes = { "alpha", "neo-tree" },
 				always_divide_middle = true,
 			},
 			sections = {
 				lualine_a = { mode },
-				lualine_b = { "branch" },
+				lualine_b = { "branch", diff, { env_name, color = { fg = "#58d0ee" } } },
 				lualine_c = { filename },
 				lualine_x = {
 					diagnostics,
-					diff,
 					{ "encoding", cond = hide_in_width },
 					{ "filetype", cond = hide_in_width },
 				},
