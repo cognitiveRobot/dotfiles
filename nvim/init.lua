@@ -54,6 +54,7 @@ require("lazy").setup({
 	require("plugins.colorscheme-sonokai"),
 	-- require("plugins.colorscheme-material"),
 	require("plugins.neotree"),
+	require("plugins.nvim-tree"),
 	require("plugins.bufferline"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
