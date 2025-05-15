@@ -48,23 +48,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 --- plugins integration --
 require("lazy").setup({
+	require("plugins.snacks"),
 	-- require("plugins.breadcrums"),
 	-- require("plugins.colortheme"),
 	-- require("plugins.colorscheme-nordic"),
 	require("plugins.colorscheme-sonokai"),
 	-- require("plugins.colorscheme-material"),
-	require("plugins.neotree"),
-	require("plugins.nvim-tree"),
+	-- require("plugins.neotree"),
+	-- require("plugins.nvim-tree"),
 	require("plugins.bufferline"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
-	require("plugins.telescope"),
+	-- require("plugins.telescope"),
 	require("plugins.lsp"),
 	require("plugins.autocompletion"),
 	require("plugins.none-ls"),
 	require("plugins.gitsigns"),
 	require("plugins.alpha"),
-	require("plugins.indent-blankline"),
+	-- require("plugins.indent-blankline"),
 	require("plugins.misc"),
 	require("plugins.comment"),
 	require("plugins.modes"), --Modes cursor colors
