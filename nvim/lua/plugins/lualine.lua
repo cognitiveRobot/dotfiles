@@ -53,7 +53,8 @@ return {
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = "sonokai",
+				-- theme = "sonokai",
+				theme = "onedark",
 				-- theme = "nord", -- Set theme based on environment variable
 				-- Some useful glyphs:
 				-- https://www.nerdfonts.com/cheat-sheet
