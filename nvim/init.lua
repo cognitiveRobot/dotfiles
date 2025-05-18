@@ -10,11 +10,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	end
 end
 vim.opt.rtp:prepend(lazypath)
-
 -- Prevent LSP from overwriting treesitter color settings
 -- https://github.com/NvChad/NvChad/issues/1907
 vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
-
 -- Appearance of diagnostics
 vim.diagnostic.config({
 	virtual_text = {
@@ -98,7 +96,8 @@ function _G.set_terminal_keymaps()
 	vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
 	vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+-- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 --conda env
 
