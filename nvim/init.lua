@@ -72,6 +72,7 @@ require("lazy").setup({
 	require("plugins.comment"),
 	require("plugins.modes"), --Modes cursor colors
 	require("plugins.noice"),
+	require("plugins.trouble"),
 	require("plugins.iron"),
 	require("plugins.toggleterm"),
 	require("plugins.conda"),
