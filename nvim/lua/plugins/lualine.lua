@@ -62,7 +62,8 @@ return {
 				--        
 				section_separators = { left = "", right = "" },
 				-- component_separators = { left = "", right = "" },
-				component_separators = { left = "", right = "" },
+				-- component_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 				disabled_filetypes = { "alpha", "neo-tree" },
 				always_divide_middle = true,
 			},
@@ -72,7 +73,7 @@ return {
 				lualine_c = { filename },
 				lualine_x = {
 					diagnostics,
-					{ "encoding", cond = hide_in_width },
+					-- { "encoding", cond = hide_in_width },
 					{ "filetype", cond = hide_in_width },
 				},
 				lualine_y = { "location" },
