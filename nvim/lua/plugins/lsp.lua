@@ -13,8 +13,47 @@ return {
 
 		-- Allows extra capabilities provided by nvim-cmp
 		"hrsh7th/cmp-nvim-lsp",
+		{ -- lua
+			"folke/lazydev.nvim",
+			ft = "lua", -- only load on lua files
+			opts = {
+				library = {
+					-- See the configuration section for more details
+					-- Load luvit types when the `vim.uv` word is found
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		},
+		{ -- optional cmp completion source for require statements and module annotations
+			"hrsh7th/nvim-cmp",
+			opts = function(_, opts)
+				opts.sources = opts.sources or {}
+				table.insert(opts.sources, {
+					name = "lazydev",
+					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+				})
+			end,
+		},
+		{ -- optional blink completion source for require statements and module annotations
+			"saghen/blink.cmp",
+			opts = {
+				sources = {
+					-- add lazydev to your completion providers
+					default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+					providers = {
+						lazydev = {
+							name = "LazyDev",
+							module = "lazydev.integrations.blink",
+							-- make lazydev completions top priority (see `:h blink.cmp`)
+							score_offset = 100,
+						},
+					},
+				},
+			},
+		},
 	},
 	config = function()
+		require("lspconfig").lua_ls.setup({})
 		-- Brief aside: **What is LSP?**
 		--
 		-- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -60,27 +99,27 @@ return {
 				-- Jump to the definition of the word under your cursor.
 				--  This is where a variable was first declared, or where a function is defined, etc.
 				--  To jump back, press <C-t>.
-				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+				-- map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
 				-- Find references for the word under your cursor.
-				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
-				-- Jump to the implementation of the word under your cursor.
-				--  Useful when your language has ways of declaring types without an actual implementation.
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-
-				-- Jump to the type of the word under your cursor.
-				--  Useful when you're not sure what type a variable is and you want to see
-				--  the definition of its *type*, not where it was *defined*.
-				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-
-				-- Fuzzy find all the symbols in your current document.
-				--  Symbols are things like variables, functions, types, etc.
-				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-
-				-- Fuzzy find all the symbols in your current workspace.
-				--  Similar to document symbols, except searches over your entire project.
-				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+				-- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				--
+				-- -- Jump to the implementation of the word under your cursor.
+				-- --  Useful when your language has ways of declaring types without an actual implementation.
+				-- map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+				--
+				-- -- Jump to the type of the word under your cursor.
+				-- --  Useful when you're not sure what type a variable is and you want to see
+				-- --  the definition of its *type*, not where it was *defined*.
+				-- map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+				--
+				-- -- Fuzzy find all the symbols in your current document.
+				-- --  Symbols are things like variables, functions, types, etc.
+				-- map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+				--
+				-- -- Fuzzy find all the symbols in your current workspace.
+				-- --  Similar to document symbols, except searches over your entire project.
+				-- map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
 				-- Rename the variable under your cursor.
 				--  Most Language Servers support renaming across files, etc.
@@ -189,30 +228,30 @@ return {
 			jsonls = {},
 			yamlls = {},
 
-			lua_ls = {
-				-- cmd = {...},
-				-- filetypes = { ...},
-				-- capabilities = {},
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-						runtime = { version = "LuaJIT" },
-						workspace = {
-							checkThirdParty = false,
-							library = {
-								"${3rd}/luv/library",
-								unpack(vim.api.nvim_get_runtime_file("", true)),
-							},
-						},
-						diagnostics = { disable = { "missing-fields" } },
-						format = {
-							enable = false,
-						},
-					},
-				},
-			},
+			-- lua_ls = {
+			-- 	-- cmd = {...},
+			-- 	-- filetypes = { ...},
+			-- 	-- capabilities = {},
+			-- 	settings = {
+			-- 		Lua = {
+			-- 			completion = {
+			-- 				callSnippet = "Replace",
+			-- 			},
+			-- 			runtime = { version = "LuaJIT" },
+			-- 			workspace = {
+			-- 				checkThirdParty = false,
+			-- 				library = {
+			-- 					"${3rd}/luv/library",
+			-- 					unpack(vim.api.nvim_get_runtime_file("", true)),
+			-- 				},
+			-- 			},
+			-- 			diagnostics = { disable = { "missing-fields" } },
+			-- 			format = {
+			-- 				enable = false,
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
 		}
 
 		-- Ensure the servers and tools above are installed
