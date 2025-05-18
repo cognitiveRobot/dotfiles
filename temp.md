@@ -1,3 +1,7 @@
+## Dependencies
+`Snacks` live grep depends on `ripgrep` system tool - https://github.com/BurntSushi/ripgrep
+`venv-selector` depends on `fd-find` system tool - https://github.com/sharkdp/fd
+## Links
 https://gist.github.com/pbnj/67c16c37918ba40bbb233b97f3e38456
 
 https://github.com/gregorias/nvim-mapper
