@@ -75,7 +75,8 @@ require("lazy").setup({
 	require("plugins.trouble"),
 	require("plugins.iron"),
 	require("plugins.toggleterm"),
-	require("plugins.conda"),
+	-- require("plugins.conda"),
+	require("plugins.venv-selector"),
 })
 
 --Cursor highlight didn't work
