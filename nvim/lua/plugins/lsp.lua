@@ -207,6 +207,7 @@ return {
 				settings = {
 					pylsp = {
 						plugins = {
+							rope_autoimport = { enabled = true },
 							pyflakes = { enabled = false },
 							pycodestyle = { enabled = false },
 							autopep8 = { enabled = false },
