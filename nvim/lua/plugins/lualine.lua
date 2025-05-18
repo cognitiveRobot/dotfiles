@@ -46,8 +46,9 @@ return {
 		}
 
 		local env_name = function()
-			local name = vim.env.CONDA_DEFAULT_ENV
-			return "(" .. name .. ")"
+			local env_dir = require("venv-selector").python()
+			local env_parts = vim.fn.split(env_dir, "/")
+			return "(" .. env_parts[5] .. ")"
 		end
 
 		require("lualine").setup({
