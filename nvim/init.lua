@@ -76,6 +76,7 @@ require("lazy").setup({
 	-- require("plugins.conda"),
 	require("plugins.venv-selector"),
 	require("plugins.scrollbar"),
+	require("plugins.barbeque"),
 })
 
 --Cursor highlight didn't work
