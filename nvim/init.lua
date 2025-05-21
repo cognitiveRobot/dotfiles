@@ -86,6 +86,11 @@ vim.api.nvim_set_hl(0, "CursorLineNrAbove", { fg = "blue" })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "white", bold = true }) -- { fg = "yellow" })
 vim.api.nvim_set_hl(0, "CursorLineNrBelow", { fg = "magenta" })
 
+-- winbar background
+vim.api.nvim_set_hl(0, "WinBar", { bg = "#282C34" })
+vim.api.nvim_set_hl(0, "WinBarNC", { bg = "#282C34" })
+vim.api.nvim_set_hl(0, "BufferLineFill", { bg = "#31353F" })
+
 --toggleterm
 
 function _G.set_terminal_keymaps()
