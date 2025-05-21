@@ -124,5 +124,12 @@ return {
 			end,
 			desc = "Keymaps",
 		},
+		{
+			"<leader>sH",
+			function()
+				Snacks.picker.highlights()
+			end,
+			desc = "Highlights",
+		},
 	},
 }
