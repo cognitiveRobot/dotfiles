@@ -48,11 +48,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 require("lazy").setup({
 	require("plugins.snacks"),
 	-- require("plugins.breadcrums"),
-	-- require("plugins.colortheme"),
+	require("plugins.colortheme"),
 	-- require("plugins.colorscheme-nordic"),
 	-- require("plugins.colorscheme-sonokai"),
 	-- require("plugins.colorscheme-gruvbox"),
-	require("plugins.colorscheme-onedark"),
+	-- require("plugins.colorscheme-onedark"),
 	-- require("plugins.colorscheme-material"),
 	-- require("plugins.neotree"),
 	-- require("plugins.nvim-tree"),
@@ -78,7 +78,7 @@ require("lazy").setup({
 	require("plugins.scrollbar"),
 	require("plugins.barbeque"),
 })
-
+vim.cmd.colorscheme("onedark")
 --Cursor highlight didn't work
 vim.cmd([[highlight CursorLine guibg=#1e1e2e guifg=NONE]])
 -- Line Number highlight
