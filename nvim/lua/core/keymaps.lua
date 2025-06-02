@@ -7,6 +7,9 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 --- jj to escape
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+vim.keymap.set("i", "jk", "<ESC>", { silent = true })
+vim.keymap.set("i", "kj", "<ESC>", { silent = true })
+vim.keymap.set("i", "kk", "<ESC>", { silent = true })
 
 -- For conciseness
 local opts = { noremap = true, silent = true }
