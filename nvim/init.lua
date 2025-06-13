@@ -77,6 +77,8 @@ require("lazy").setup({
 	require("plugins.venv-selector"),
 	require("plugins.scrollbar"),
 	require("plugins.barbeque"),
+	require("plugins.cmd-autocomplete"),
+	require("nvim.lua.plugins.treesitter-textobjects"),
 })
 vim.cmd.colorscheme("onedark")
 --Cursor highlight didn't work
