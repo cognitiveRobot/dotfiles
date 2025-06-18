@@ -11,7 +11,7 @@ return {
 				cursor = {
 					enable = true,
 					-- Supports any number of symbols
-					symbols = { "⎺", "⎻", "⎼", "⎽" },
+					symbols = { "󰹞", "󰹞", "󰹞", "󰹞" },
 					-- symbols = { '⎻', '⎼' }
 					-- Highlights:
 					-- - SatelliteCursor (default links to NonText
@@ -35,9 +35,9 @@ return {
 				gitsigns = {
 					enable = true,
 					signs = { -- can only be a single character (multibyte is okay)
-						add = "│",
-						change = "│",
-						delete = "-",
+						add = "⏽",
+						change = "⏽",
+						delete = "⏽",
 					},
 					-- Highlights:
 					-- SatelliteGitSignsAdd (default links to GitSignsAdd)
