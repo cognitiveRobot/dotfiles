@@ -13,6 +13,10 @@ return {
 		indent = { enabled = true },
 		input = { enabled = false },
 		picker = {
+			exclude = {
+				".git",
+				"__pycache__",
+			},
 			enabled = true,
 			sources = {
 				explorer = {
