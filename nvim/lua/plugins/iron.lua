@@ -7,6 +7,7 @@ return {
 
 		iron.setup({
 			config = {
+				ignore_blank_lines = true,
 				-- Whether a repl should be discarded or not
 				scratch_repl = true,
 				-- Your repl definitions come here
@@ -18,7 +19,7 @@ return {
 					},
 					python = {
 						command = { "ipython" }, -- or {"python3", "ipython", "--no-autoindent" }
-						format = common.bracketed_paste_python,
+						format = common.bracketed_paste,
 						block_dividers = { "# %%", "#%%" },
 					},
 				},

@@ -47,9 +47,9 @@ vim.keymap.set("n", "<leader>xb", ":bdelete!<CR>", opts) -- close buffer
 -- vim.keymap.set('n', '<leader>b', '<cmd> enew <CR>', opts) -- new buffer
 
 -- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", opts)      -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", opts)      -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=", opts)     -- make split windows equal width & height
+vim.keymap.set("n", "<leader>v", "<C-w>v", opts) -- split window vertically
+vim.keymap.set("n", "<leader>h", "<C-w>s", opts) -- split window horizontally
+vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
 vim.keymap.set("n", "<leader>xs", ":close<CR>", opts) -- close current split window
 
 -- Navigate between splits
@@ -59,10 +59,10 @@ vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", opts)
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts)
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts)   -- open new tab
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts)     --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts)     --  go to previous tab
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
@@ -75,7 +75,5 @@ vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("v", "p", '"_dP', opts)
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })

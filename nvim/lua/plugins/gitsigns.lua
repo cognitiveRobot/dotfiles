@@ -31,13 +31,13 @@ return {
 			map("n", "gj", function() gs.nav_hunk("next") end, { desc = "Git Next hunk" })
 			map("n", "gk", function() gs.nav_hunk("prev") end, { desc = "Git previous hunk" })
 			map("n", "gsh", gs.stage_hunk, { desc = "Stage hunk" })
-			map("v", "gsH", function() gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end,
-				{ desc = "Undo stage hunk" })
+			map("v", "grh", function() gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end,
+				{ desc = "Restore stage hunk" })
 			-- map("n", "<leader>gr", gs.reset_hunk, { desc = "Reset Hunk" })
 			-- map("v", "<leader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
 			--   { desc = "Reset Hunk" })
 			map("n", "gsb", gs.stage_buffer, { desc = "Stage buffer" })
-			map("n", "gsB", gs.reset_buffer, { desc = "Restore staged buffer" })
+			map("n", "grb", gs.reset_buffer, { desc = "Restore staged buffer" })
 			map("n", "gp", gs.preview_hunk, { desc = "Preview hunk" })
 			map("n", "gb", gs.toggle_current_line_blame, { desc = "Toggle Blame line" })
 			map("n", "gdd", gs.diffthis, { desc = "Diff" })
@@ -45,7 +45,7 @@ return {
 		end,
 	},
 	keys = {
-		{ "ggg", "", desc = "+Git" },
+		{ "g+", "", desc = "+Git" },
 	},
 	config = function(_, opts)
 		require("gitsigns").setup(opts)
