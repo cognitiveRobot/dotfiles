@@ -52,7 +52,7 @@ return {
 			desc = "Buffers",
 		},
 		{
-			"<leader>g",
+			"<leader>gg",
 			function()
 				Snacks.picker.grep()
 			end,
@@ -341,6 +341,7 @@ return {
 			function()
 				Snacks.picker.lsp_definitions()
 			end,
+			nowait = true,
 			desc = "Goto Definition",
 		},
 		{
@@ -431,7 +432,7 @@ return {
 			mode = { "n", "v" },
 		},
 		{
-			"<leader>gg",
+			"<leader>lg",
 			function()
 				Snacks.lazygit()
 			end,
