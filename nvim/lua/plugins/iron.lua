@@ -22,19 +22,24 @@ return {
 						format = common.bracketed_paste,
 						block_dividers = { "# %%", "#%%" },
 					},
+					quarto = {
+						command = { "ipython" }, -- or {"python3", "ipython", "--no-autoindent" }
+						format = common.bracketed_paste,
+						block_dividers = { "```{python}", "```" },
+					},
 				},
 				-- set the file type of the newly created repl to ft
 				-- bufnr is the buffer id of the REPL and ft is the filetype of the
 				-- language being used for the REPL.
-				repl_filetype = function(bufnr, ft)
-					return ft
-					-- or return a string name such as the following
-					-- return "iron"
-				end,
+				-- repl_filetype = function(bufnr, ft)
+				-- 	return ft
+				-- 	-- or return a string name such as the following
+				-- 	-- return "iron"
+				-- end,
 				-- How the repl window will be displayed
 				-- See below for more information
 				--- repl_open_cmd = view.bottom(40),
-				repl_open_cmd = view.right(100),
+				repl_open_cmd = view.split.vertical.rightbelow("%40"),
 
 				-- repl_open_cmd can also be an array-style table so that multiple
 				-- repl_open_commands can be given.
@@ -62,7 +67,7 @@ return {
 				-- send_motion = "<space>sc",
 				-- visual_send = "<space>sc",
 				-- send_file = "<space>rf",
-				send_line = "<space>rl",
+				send_line = "<space>ll",
 				send_paragraph = "<space>rp",
 				send_until_cursor = "<space>rc",
 				send_mark = "<space>rm",
@@ -84,6 +89,24 @@ return {
 			ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 		})
 
+		vim.keymap.set("n", "<leader>3", "o<Esc>i# %%<Esc>o", { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>4", "o<Esc>i# %% [markdown]<Esc>o", { noremap = true, silent = true })
+		local goto_next_code_cell = function()
+			if vim.bo[0].filetype == "quarto" then
+				vim.cmd("call search('^```{', 'W')")
+			else
+				vim.cmd("call search('^# %%', 'W')")
+			end
+		end
+		local goto_prev_code_cell = function()
+			if vim.bo[0].filetype == "quarto" then
+				vim.cmd("call search('^```{', 'bW')")
+			else
+				vim.cmd("call search('^# %%', 'bW')")
+			end
+		end
+		vim.keymap.set("n", "N", goto_next_code_cell, { noremap = true, silent = true })
+		vim.keymap.set("n", "P", goto_prev_code_cell, { noremap = true, silent = true })
 		-- iron also has a list of commands, see :h iron-commands for all available commands
 		vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
 		vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")

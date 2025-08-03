@@ -168,6 +168,7 @@ return {
 						plugins = {
 							pycodestyle = {
 								maxLineLength = 100, -- This sets how long the line is allowed to be. Also has effect on formatter.
+								ignore = { "E303" },
 							},
 							pyflakes = { enabled = false },
 						},

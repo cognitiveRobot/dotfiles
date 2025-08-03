@@ -50,4 +50,40 @@ return {
 			-- refer to the configuration section below
 		},
 	},
+	{
+		"stevearc/aerial.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("aerial").setup({
+				-- optionally use on_attach to set keymaps when aerial has attached to a buffer
+				on_attach = function(bufnr)
+					vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+					vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+				end,
+			})
+			vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
+		end,
+	},
+	{
+		"hedyhli/outline.nvim",
+		config = function()
+			-- Example mapping to toggle outline
+			vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+
+			require("outline").setup({
+				-- Your setup opts here (leave empty to use defaults)
+				providers = {
+					priority = { "markdown", "lsp", "coc", "norg" },
+					markdown = {
+						filetypes = { "markdown", "quarto" },
+					},
+				},
+			})
+		end,
+	},
 }
