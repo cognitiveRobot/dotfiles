@@ -28,7 +28,7 @@ return {
 				},
 			},
 		},
-		notifier = { enabled = false },
+		notifier = { enabled = true },
 		quickfile = { enabled = false },
 		scope = { enabled = true },
 		scroll = { enabled = false },
@@ -403,7 +403,7 @@ return {
 			desc = "Toggle Zoom",
 		},
 		{
-			"<leader>n",
+			"<leader>nn",
 			function()
 				Snacks.notifier.show_history()
 			end,

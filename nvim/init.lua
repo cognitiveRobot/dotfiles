@@ -52,9 +52,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 --- plugins integration --
 require("lazy").setup({
-	require("plugins.snacks"),
 	-- require("plugins.breadcrums"),
 	require("plugins.colortheme"),
+	require("plugins.snacks"),
 	require("plugins.bufferline"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
@@ -74,12 +74,15 @@ require("lazy").setup({
 	require("plugins.noice"),
 	require("plugins.trouble"),
 	require("plugins.iron"),
+	-- require("plugins.pyrola"),
 	require("plugins.toggleterm"),
 	require("plugins.venv-selector"),
 	require("plugins.scrollbar"),
 	require("plugins.barbeque"),
-	require("plugins.treesitter-textobjects"),
-	require("plugins.avante"),
+	-- require("plugins.treesitter-textobjects"),
+	-- require("plugins.avante"),
+	-- require("plugins.notebook"),
+	require("plugins.quarto-jupyter"),
 })
 vim.cmd.colorscheme("onedark")
 --Cursor highlight didn't work
@@ -94,6 +97,16 @@ vim.api.nvim_set_hl(0, "WinBar", { bg = "#282C34" })
 vim.api.nvim_set_hl(0, "WinBarNC", { bg = "#282C34" })
 vim.api.nvim_set_hl(0, "BufferLineFill", { bg = "#31353F" })
 
+-- highlight CellMarker in python file.
+-- vim.cmd([[autocmd BufEnter,BufRead *.py call matchadd('CellMarker', '#\s*%%')]])
+-- vim.api.nvim_set_hl(0, "CellMarker", { fg = "#ffffff", bg = "#5f5f5f", bold = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "*.py", "*.ipynb" },
+	callback = function()
+		vim.fn.matchadd("CellSeparator", "# %%", -1)
+		vim.api.nvim_set_hl(0, "CellSeparator", { fg = "#ffffff", bg = "#4a5a83" })
+	end,
+})
 --toggleterm
 
 function _G.set_terminal_keymaps()
@@ -110,6 +123,9 @@ end
 -- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 --conda env
-
+-- remove hlsearch highlight
+vim.keymap.set("n", "<esc>", ":nohlsearch<cr>", { silent = true })
 vim.keymap.set("n", "<leader>ce", ":CondaActivate<CR>")
 vim.keymap.set("n", "<leader>cd", ":CondaDeactivate<CR>")
+
+vim.g.python3_host_prog = vim.fn.expand("/home/zulfi/anaconda3/bin/python")

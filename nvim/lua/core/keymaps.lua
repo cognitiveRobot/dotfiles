@@ -10,6 +10,7 @@ vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 vim.keymap.set("i", "jk", "<ESC>", { silent = true })
 vim.keymap.set("i", "kj", "<ESC>", { silent = true })
 vim.keymap.set("i", "kk", "<ESC>", { silent = true })
+vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- open URL under cursor
 
 -- For conciseness
 local opts = { noremap = true, silent = true }
