@@ -12,27 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- Prevent LSP from overwriting treesitter color settings
 -- https://github.com/NvChad/NvChad/issues/1907
-vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
--- Appearance of diagnostics
-vim.diagnostic.config({
-	virtual_text = {
-		prefix = "●",
-		-- Add a custom format function to show error codes
-		format = function(diagnostic)
-			local code = diagnostic.code and string.format("[%s]", diagnostic.code) or ""
-			return string.format("%s %s", code, diagnostic.message)
-		end,
-	},
-	underline = false,
-	update_in_insert = true,
-	float = {
-		source = "always", -- Or "if_many"
-	},
-	-- Make diagnostic background transparent
-	on_ready = function()
-		vim.cmd("highlight DiagnosticVirtualText guibg=NONE")
-	end,
-})
+vim.hl.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
 -- disalbe commenting next lualine
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
@@ -44,7 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 	end,
 	group = highlight_group,
 	pattern = "*",
@@ -52,7 +32,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 --- plugins integration --
 require("lazy").setup({
-	-- require("plugins.breadcrums"),
 	require("plugins.colortheme"),
 	require("plugins.snacks"),
 	require("plugins.bufferline"),
@@ -62,12 +41,8 @@ require("lazy").setup({
 	require("plugins.formatting"),
 	require("plugins.completion"),
 	require("plugins.linting"),
-	-- require("plugins.cmd-autocomplete"),
-	-- require("plugins.autocompletion"),
-	-- require("plugins.none-ls"),
 	require("plugins.gitsigns"),
 	require("plugins.alpha"),
-	-- require("plugins.indent-blankline"),
 	require("plugins.misc"),
 	require("plugins.comment"),
 	require("plugins.modes"), --Modes cursor colors
@@ -81,7 +56,6 @@ require("lazy").setup({
 	require("plugins.barbeque"),
 	-- require("plugins.treesitter-textobjects"),
 	-- require("plugins.avante"),
-	-- require("plugins.notebook"),
 	require("plugins.quarto-jupyter"),
 })
 vim.cmd.colorscheme("onedark")
