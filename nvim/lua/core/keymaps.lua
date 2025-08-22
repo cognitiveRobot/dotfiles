@@ -74,3 +74,11 @@ vim.keymap.set("v", ">", ">gv", opts)
 
 -- Keep last yanked when pasting
 vim.keymap.set("v", "p", '"_dP', opts)
+
+vim.keymap.set("n", "<leader>gc", function()
+	vim.fn.jobstart({ "wmctrl", "-a", "Google Chrome" })
+end, { desc = "Focus Google Chrome" })
+-- Focus Brave Browser if already open
+vim.keymap.set("n", "<leader>bb", function()
+	vim.fn.jobstart({ "wmctrl", "-a", "Brave" })
+end, { desc = "Focus Brave Browser" })
