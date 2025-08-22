@@ -1,5 +1,6 @@
 return {
-	"Vigemus/iron.nvim",
+	-- "Vigemus/iron.nvim",
+	"cognitiveRobot/iron.nvim",
 	config = function()
 		local iron = require("iron.core")
 		local view = require("iron.view")
@@ -25,7 +26,7 @@ return {
 					quarto = {
 						command = { "ipython" }, -- or {"python3", "ipython", "--no-autoindent" }
 						format = common.bracketed_paste,
-						block_dividers = { "```{python}", "```" },
+						block_dividers = { "```{", "```" },
 					},
 				},
 				-- set the file type of the newly created repl to ft
