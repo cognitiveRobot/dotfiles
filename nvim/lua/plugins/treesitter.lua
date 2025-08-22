@@ -13,7 +13,9 @@ return { -- Highlight, edit, and navigate code
 
 			"m-demare/hlargs.nvim",
 			config = function()
-				require("hlargs").setup()
+				require("hlargs").setup({
+					color = "#cfc9c2",
+				})
 			end,
 		},
 		{
@@ -37,7 +39,8 @@ return { -- Highlight, edit, and navigate code
 						vim.cmd([[
 							highlight! semshiglobal guifg=#61AFEF gui=bold
 							highlight! semshiimported guifg=#61AFEF gui=bold
-							highlight! semshiparameter guifg=#cfc9c2
+							highlight! semshiparameter guifg=#cfcfcf
+							highlight! link semshiFree semshiparameter
 							highlight! link semshiparameterunused diagnosticunnecessary
 							highlight! link semshibuiltin @function.builtin
 							highlight! link semshiattribute @attribute
