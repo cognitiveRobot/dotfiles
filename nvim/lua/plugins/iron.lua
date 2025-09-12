@@ -19,12 +19,24 @@ return {
 						command = { "zsh" },
 					},
 					python = {
-						command = { "ipython" }, -- or {"python3", "ipython", "--no-autoindent" }
+						command = {
+							"ipython",
+							"--no-autoindent",
+							"-i",
+							"-c",
+							"import IPython; ip=IPython.get_ipython(); ip.run_line_magic('load_ext','autoreload'); ip.run_line_magic('autoreload','2')",
+						}, -- or {"python3", "ipython", "--no-autoindent" }
 						format = common.bracketed_paste,
 						block_dividers = { "# %%", "#%%" },
 					},
 					quarto = {
-						command = { "ipython" }, -- or {"python3", "ipython", "--no-autoindent" }
+						command = {
+							"ipython",
+							"--no-autoindent",
+							"-i",
+							"-c",
+							"import IPython; ip=IPython.get_ipython(); ip.run_line_magic('load_ext','autoreload'); ip.run_line_magic('autoreload','2')",
+						}, -- or {"python3", "ipython", "--no-autoindent" }
 						format = common.bracketed_paste,
 						block_dividers = { "```{", "```" },
 					},
@@ -66,14 +78,14 @@ return {
 				-- toggle_repl_with_cmd_2 = "<space>rh",
 				restart_repl = "<space>rR", -- calls `IronRestart` to restart the repl
 				-- send_motion = "<space>sc",
-				-- visual_send = "<space>sc",
+				visual_send = "<space>rv",
 				-- send_file = "<space>rf",
 				send_line = "<space>ll",
 				send_paragraph = "<space>rp",
 				send_until_cursor = "<space>rc",
 				send_mark = "<space>rm",
 				send_code_block = "<space><cr>",
-				send_code_block_and_move = "<space><cr><cr>",
+				send_code_block_and_move = "<space><cr>m",
 				-- mark_motion = "<space>mc",
 				-- mark_visual = "<space>mc",
 				-- remove_mark = "<space>md",
@@ -89,6 +101,49 @@ return {
 			},
 			ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 		})
+
+		-- Function to send `type(<word>)` to REPL
+		local send_word_for = function(key)
+			-- Get word under cursor
+			local word = vim.fn.expand("<cword>")
+			-- Build command
+			local cmd = ""
+			if key == "type" then
+				cmd = "type(" .. word .. ")"
+			elseif key == "col" then
+				cmd = word .. ".columns"
+			elseif key == "info" then
+				cmd = word .. ".info()"
+			elseif key == "len" then
+				cmd = "len(" .. word .. ")"
+			else
+				cmd = ""
+			end
+			-- Send to REPL
+			iron.send(nil, { cmd })
+		end
+
+		-- Keymap example: <leader>tw
+		vim.keymap.set("n", "<leader>ty", function()
+			send_word_for("type")
+		end, { noremap = true, silent = true, desc = "type of under cursor word" })
+		vim.keymap.set("n", "<leader>co", function()
+			send_word_for("col")
+		end, { noremap = true, silent = true, desc = ".columns of under cursor word" })
+		vim.keymap.set("n", "<leader>in", function()
+			send_word_for("info")
+		end, { noremap = true, silent = true, desc = ".info() of under cursor word" })
+		vim.keymap.set("n", "<leader>le", function()
+			send_word_for("len")
+		end, { noremap = true, silent = true, desc = "len of under cursor word" })
+
+		vim.keymap.set("n", "<leader>k", "viw<leader>rv", { remap = true, silent = true })
+		vim.keymap.set(
+			"n",
+			"<space><cr><cr>",
+			"<space><cr>mN",
+			{ remap = true, silent = true, desc = "Send code block and go to the next." }
+		)
 
 		vim.keymap.set("n", "<leader>3", "o<Esc>i# %%<Esc>o", { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>4", "o<Esc>i# %% [markdown]<Esc>o", { noremap = true, silent = true })
