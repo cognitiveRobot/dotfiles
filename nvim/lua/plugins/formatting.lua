@@ -24,10 +24,10 @@ return {
 					markdown = { "injected" },
 					r = { "styler" },
 				},
-				format_on_save = {
-					timeout_ms = 500,
-					lsp_format = "fallback",
-				},
+				-- format_on_save = {
+				-- 	timeout_ms = 500,
+				-- 	lsp_format = "fallback",
+				-- },
 				formatters = {
 					ruff_format = {
 						inherit = false,
@@ -69,6 +69,9 @@ return {
 		-- vim.keymap.set("", "<leader>fm", function()
 		-- 	require("conform").format({ async = true, lsp_fallback = true })
 		-- end, { desc = "[F]ormat" }),
+		vim.keymap.set("n", "<leader>fa", function()
+			require("conform").format({ async = true, lsp_fallback = true })
+		end, { desc = "[F]ormat whole file." }),
 		vim.keymap.set("", "<leader>fm", function()
 			require("conform").format({ async = true, lsp_fallback = true }, function(err)
 				if not err then
