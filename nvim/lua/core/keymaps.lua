@@ -34,7 +34,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 -- Find and center
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
-
+-- Shift + J/K moves selected lines down/up in visual Mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move selected line down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move selected line up" })
 -- Resize with arrows
 vim.keymap.set("n", "<Up>", ":resize -2<CR>", opts)
 vim.keymap.set("n", "<Down>", ":resize +2<CR>", opts)
@@ -82,3 +84,9 @@ end, { desc = "Focus Google Chrome" })
 vim.keymap.set("n", "<leader>bb", function()
 	vim.fn.jobstart({ "wmctrl", "-a", "Brave" })
 end, { desc = "Focus Brave Browser" })
+-- Diagnostic keymaps
+vim.keymap.set("n", "<leader>dm", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>dn", function()
+	vim.cmd("edit ~/workdir/notes.md")
+end, { desc = "Daily notes" })
