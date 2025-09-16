@@ -55,7 +55,7 @@ require("lazy").setup({
 	require("plugins.venv-selector"),
 	require("plugins.scrollbar"),
 	require("plugins.barbeque"),
-	-- require("plugins.treesitter-textobjects"),
+	require("plugins.treesitter-textobjects"),
 	-- require("plugins.avante"),
 	require("plugins.quarto-jupyter"),
 })
