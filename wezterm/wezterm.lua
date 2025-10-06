@@ -5,6 +5,7 @@ local config = wezterm.config_builder()
 config = {
 	automatically_reload_config = true,
 	enable_tab_bar = false,
+	font_size = 16.0,
 	window_close_confirmation = "NeverPrompt",
 	window_decorations = "RESIZE", -- disable title bar
 	default_cursor_style = "BlinkingBar",
@@ -14,6 +15,18 @@ config = {
 		background = "#282c35",
 		cursor_bg = "#ffffff",
 		cursor_border = "#ffffff",
+	},
+	keys = {
+		{
+			key = "f",
+			mods = "CTRL",
+			action = wezterm.action.ToggleFullScreen,
+		},
+		-- {
+		-- 	key = '\'',
+		-- 	mods = 'CTRL',
+		-- 	action = wezterm.action.ClearScrollback 'ScrollbackAndViewport',
+		-- },
 	},
 
 	-- background = {
