@@ -7,7 +7,7 @@ config = {
 	enable_tab_bar = false,
 	font_size = 14.0,
 	window_close_confirmation = "NeverPrompt",
-	window_decorations = "NONE", -- disable title bar
+	window_decorations = "NONE", -- "RESIZE" -- disable title bar
 	default_cursor_style = "BlinkingBar",
 
 	-- https://wezterm.org/config/appearance.html#defining-your-own-colors
