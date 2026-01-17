@@ -55,6 +55,7 @@ return { -- Highlight, edit, and navigate code
 	opts = {
 		ensure_installed = {
 			"lua",
+			"r",
 			"python",
 			"javascript",
 			"typescript",
