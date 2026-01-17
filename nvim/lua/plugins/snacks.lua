@@ -258,7 +258,7 @@ return {
 			desc = "Highlights",
 		},
 		{
-			"<leader>si",
+			"<leader>sI",
 			function()
 				Snacks.picker.icons()
 			end,
