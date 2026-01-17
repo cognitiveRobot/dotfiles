@@ -7,10 +7,10 @@ return {
 				log_level = vim.log.levels.DEBUG,
 				formatters_by_ft = {
 					lua = { "stylua" },
-					-- javascript = { "prettierd", "prettier", stop_after_first = true },
-					-- javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-					-- typescript = { "prettierd", "prettier", stop_after_first = true },
-					-- typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+					javascript = { "prettierd", "prettier", stop_after_first = true },
+					javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+					typescript = { "prettierd", "prettier", stop_after_first = true },
+					typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 					json = { "prettierd", "prettier", stop_after_first = true },
 					graphql = { "prettierd", "prettier", stop_after_first = true },
 					python = {
@@ -22,25 +22,26 @@ return {
 					},
 					quarto = { "injected" },
 					markdown = { "injected" },
+					rmd = { "styler" },
 					r = { "styler" },
 				},
 				-- format_on_save = {
 				-- 	timeout_ms = 500,
 				-- 	lsp_format = "fallback",
 				-- },
-				formatters = {
-					ruff_format = {
-						inherit = false,
-						command = "ruff",
-						args = {
-							"format",
-							"$FILENAME",
-							"--line-length=100",
-							"--stdin-filename",
-							"$FILENAME",
-						},
-					},
-				},
+				-- formatters = {
+				-- 	ruff_format = {
+				-- 		inherit = false,
+				-- 		command = "ruff",
+				-- 		args = {
+				-- 			"format",
+				-- 			"$FILENAME",
+				-- 			"--line-length=100",
+				-- 			"--stdin-filename",
+				-- 			"$FILENAME",
+				-- 		},
+				-- 	},
+				-- },
 			})
 			-- Customize the "injected" formatter
 			require("conform").formatters.injected = {
@@ -57,7 +58,7 @@ return {
 						latex = "tex",
 						markdown = "md",
 						python = "py",
-						r = "r",
+						r = { "r", "rmd" },
 						typescript = "ts",
 					},
 					-- Map of treesitter language to formatters to use
@@ -69,7 +70,7 @@ return {
 		-- vim.keymap.set("", "<leader>fm", function()
 		-- 	require("conform").format({ async = true, lsp_fallback = true })
 		-- end, { desc = "[F]ormat" }),
-		vim.keymap.set("n", "<leader>fa", function()
+		vim.keymap.set("n", "<leader>fo", function()
 			require("conform").format({ async = true, lsp_fallback = true })
 		end, { desc = "[F]ormat whole file." }),
 		vim.keymap.set("", "<leader>fm", function()
@@ -82,6 +83,10 @@ return {
 				end
 			end)
 		end, { desc = "Format code" }),
+		-- sort imports
+		vim.keymap.set("n", "<leader>si", function()
+			vim.cmd("LspEslintFixAll")
+		end, { desc = "ESLint sort imports" }),
 	},
 	{
 		"windwp/nvim-ts-autotag",
