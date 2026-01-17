@@ -175,8 +175,8 @@ return {
 				vim.cmd("call search('^# %%', 'bW')")
 			end
 		end
-		vim.keymap.set("n", "N", goto_next_code_cell, { noremap = true, silent = true })
-		vim.keymap.set("n", "P", goto_prev_code_cell, { noremap = true, silent = true })
+		vim.keymap.set("n", "<C-n>", goto_next_code_cell, { noremap = true, silent = true })
+		vim.keymap.set("n", "<C-p>", goto_prev_code_cell, { noremap = true, silent = true })
 		-- iron also has a list of commands, see :h iron-commands for all available commands
 		vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
 		vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
