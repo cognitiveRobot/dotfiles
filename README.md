@@ -7,15 +7,19 @@ ln -s /home/zulfi/workdir/dotfiles/nvim /home/zulfi/.config/nvim
 ln -s /home/zulfi/workdir/dotfiles/tmux /home/zulfi/.config/tmux
 ln -s /home/zulfi/workdir/dotfiles/wezterm /home/zulfi/.config/wezterm
 ```
+## tmux
+```
+- Install tmux
+- Install tmux plugin manager - https://github.com/tmux-plugins/tpm
+    - reload conf - tmux source-file ~/.config/tmux/tmux.conf
+- Install plugins -  `prefix` + shift i
+```
+## zsh
 
-## Plugins to try
+- Install zoxide, fzf
+- cp .zshrc file to HOME
+- restart terminal
 
-- plugins-list - https://neovimcraft.com/
-- Onedark - https://github.com/navarasu/onedark.nvim?tab=readme-ov-file
-- zenmode - https://github.com/folke/zen-mode.nvim?tab=readme-ov-file
-- treesitter-context - https://github.com/nvim-treesitter/nvim-treesitter-context
-- molten - https://github.com/benlubas/molten-nvim?tab=readme-ov-file
-- magma - https://github.com/dccsillag/magma-nvim
 
 ## Issues
 
