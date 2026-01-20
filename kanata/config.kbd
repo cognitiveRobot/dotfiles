@@ -1,0 +1,35 @@
+;; Caps to escape/control configuration for Kanata
+
+(defsrc
+  caps
+  tab
+  ;;lalt
+  ;;n
+)
+
+;; Variables
+(defvar
+ taptime 100
+ holdtime 100
+)
+
+(defalias
+  escctrl (tap-hold $taptime $holdtime esc lctl)
+  tabhold (tap-hold $taptime $holdtime tab (multi lctl lalt lsft ))
+  ;;apps_layer (tap-hold $taptime $holdtime lalt (layer-toggle apps))
+  ;;sffirefox (cmd bash -c "wmctrl -a firefox || firefox")
+)
+
+(deflayer base
+  @escctrl
+  @tabhold
+  ;;@apps_layer
+  ;;n
+)
+
+;;(deflayer apps
+;;  _          ;; caps
+;;  _          ;; tab
+;;  _          ;; lalt
+;;  @sffirefox  ;; n
+;;)
