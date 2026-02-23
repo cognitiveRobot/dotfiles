@@ -14,6 +14,8 @@ C:\Users\<user>\.config\wezterm
 - default shell @wezterm.lua
 ```
 default_prog = { "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" },
+# or
+default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShellPreview_7.6.6.0_x64__8wekyb3d8bbwe\\pwsh.exe" },
 ```
 
 ## gcc compiler
