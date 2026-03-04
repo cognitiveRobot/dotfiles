@@ -12,10 +12,11 @@ C:\Users\<user>\AppData\Local\nvim-data
 C:\Users\<user>\.config\wezterm
 ```
 - default shell @wezterm.lua
+- install latest powershell according to this https://learn.microsoft.com/en-us/powershell/scripting/install/install-powershell-on-windows?view=powershell-7.5 
 ```
 default_prog = { "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" },
 # or
-default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShellPreview_7.6.6.0_x64__8wekyb3d8bbwe\\pwsh.exe" },
+default_prog = { "C:\\Program Files\\PowerShell\\7\\pwsh.exe" },
 ```
 
 ## gcc compiler
