@@ -1,6 +1,7 @@
 #!/bin/bash
 
-
+cp config.kbd ~/.config/kanata/config.kbd 
+echo "Copied config.kbd"
 systemctl --user daemon-reload
 systemctl --user stop kanata.service
 sleep 1

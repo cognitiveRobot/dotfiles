@@ -3,39 +3,38 @@
 (defsrc
   caps
   tab
-  ;;lalt
-  ;;n
+  grv ;; nav_layer
+  h j k l ;; for nav layer
 )
 
 (defcfg
     process-unmapped-keys yes
     log-layer-changes no
+    concurrent-tap-hold yes
 )
 
 
 ;; Variables
 (defvar
- taptime 150
- holdtime 150
+ taptime 200
+ holdtime 200
 )
 
 (defalias
   escctrl (tap-hold-release $taptime $holdtime esc lctl)
   tabhold (tap-hold-release $taptime $holdtime tab (multi lctl lalt lsft ))
-  ;;apps_layer (tap-hold $taptime $holdtime lalt (layer-toggle apps))
+  nav_layer (tap-hold $taptime $holdtime grv (layer-toggle nav)) 
+  ;;apps_layer (tap-hold $taptime $holdtime lalt (layer-toggle apps)) 
   ;;sffirefox (cmd bash -c "wmctrl -a firefox || firefox")
 )
 
 (deflayer base
   @escctrl
   @tabhold
-  ;;@apps_layer
-  ;;n
+  @nav_layer
+  h j k l
 )
 
-;;(deflayer apps
-;;  _          ;; caps
-;;  _          ;; tab
-;;  _          ;; lalt
-;;  @sffirefox  ;; n
-;;)
+(deflayer nav
+ _ _ _ left down up right
+) 
