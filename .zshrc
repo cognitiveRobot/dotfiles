@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# NVIM path
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
 # Created by newuser for 5.9
 
 ### Added by Zinit's installer
@@ -29,6 +32,9 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
+
+#zsh-vi-mode Keybindings
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
@@ -76,8 +82,15 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
+alias ca='conda activate'
+alias cde='conda deactivate'
+alias clist='conda list'
+alias celist='conda env list'
+alias wgpu='watch nvidia-smi'
 
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
