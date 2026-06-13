@@ -18,39 +18,39 @@ return { -- Highlight, edit, and navigate code
 				})
 			end,
 		},
-		{
-			-- "numiras/semshi",
-			"wookayin/semshi", -- use a maintained fork
-			ft = "python",
-			build = ":UpdateRemotePlugins",
-			init = function()
-				-- Disabled these features better provided by LSP or other more general plugins
-				vim.g["semshi#error_sign"] = false
-				vim.g["semshi#simplify_markup"] = false
-				vim.g["semshi#mark_selected_nodes"] = false
-				vim.g["semshi#update_delay_factor"] = 0.001
-
-				-- This autocmd must be defined in init to take effect
-				-- highlight! link semshiParameter @lsp.type.parameter
-				vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
-					group = vim.api.nvim_create_augroup("SemanticHighlight", {}),
-					callback = function()
-						-- Only add style, inherit or link to the LSP's colors
-						vim.cmd([[
-							highlight! semshiglobal guifg=#61AFEF gui=bold
-							highlight! semshiimported guifg=#61AFEF gui=bold
-							highlight! semshiparameter guifg=#cfcfcf
-							highlight! link semshiFree semshiparameter
-							highlight! link semshiparameterunused diagnosticunnecessary
-							highlight! link semshibuiltin @function.builtin
-							highlight! link semshiattribute @attribute
-							highlight! link semshiself @lsp.type.selfkeyword
-							highlight! link semshiUnresolved @lsp.type.unresolvedReference
-							]])
-					end,
-				})
-			end,
-		},
+		-- {
+		-- 	-- "numiras/semshi",
+		-- 	"wookayin/semshi", -- use a maintained fork
+		-- 	ft = "python",
+		-- 	build = ":UpdateRemotePlugins",
+		-- 	init = function()
+		-- 		-- Disabled these features better provided by LSP or other more general plugins
+		-- 		vim.g["semshi#error_sign"] = false
+		-- 		vim.g["semshi#simplify_markup"] = false
+		-- 		vim.g["semshi#mark_selected_nodes"] = false
+		-- 		vim.g["semshi#update_delay_factor"] = 0.001
+		--
+		-- 		-- This autocmd must be defined in init to take effect
+		-- 		-- highlight! link semshiParameter @lsp.type.parameter
+		-- 		vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
+		-- 			group = vim.api.nvim_create_augroup("SemanticHighlight", {}),
+		-- 			callback = function()
+		-- 				-- Only add style, inherit or link to the LSP's colors
+		-- 				vim.cmd([[
+		-- 					highlight! semshiglobal guifg=#61AFEF gui=bold
+		-- 					highlight! semshiimported guifg=#61AFEF gui=bold
+		-- 					highlight! semshiparameter guifg=#cfcfcf
+		-- 					highlight! link semshiFree semshiparameter
+		-- 					highlight! link semshiparameterunused diagnosticunnecessary
+		-- 					highlight! link semshibuiltin @function.builtin
+		-- 					highlight! link semshiattribute @attribute
+		-- 					highlight! link semshiself @lsp.type.selfkeyword
+		-- 					highlight! link semshiUnresolved @lsp.type.unresolvedReference
+		-- 					]])
+		-- 			end,
+		-- 		})
+		-- 	end,
+		-- },
 	},
 	opts = {
 		ensure_installed = {
