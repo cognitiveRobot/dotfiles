@@ -17,11 +17,11 @@ return {
 	opts = {
 		search = {
 			anaconda_base = {
-				command = "fdfind /python$ $HOME/anaconda3/bin --full-path --color never -E /proc",
+				command = "fd /python$ $HOME/anaconda3/bin --full-path --color never -E /proc",
 				type = "anaconda",
 			},
 			anaconda_envs = {
-				command = "fdfind bin/python$ $HOME/anaconda3/envs --full-path --color never -E /proc",
+				command = "fd bin/python$ $HOME/anaconda3/envs --full-path --color never -E /proc",
 				type = "anaconda",
 			},
 		},
