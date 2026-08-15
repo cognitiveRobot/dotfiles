@@ -1,9 +1,16 @@
 vim.o.autoread = true
 -- vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "CursorMoved" }, {
-vim.api.nvim_create_autocmd({ "FocusGained" }, {
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
 	-- command = "if mode() != 'c' | checktime | endif",
 	command = "checktime",
 	pattern = "*",
+})
+-- IronRepl split doesn't resize after snacks file explorer closes.
+-- The following autocmd solves it.
+vim.api.nvim_create_autocmd("WinClosed", {
+	callback = function()
+		vim.cmd("wincmd =")
+	end,
 })
 local function set_terminal_keymaps()
 	local opts = { buffer = 0 }

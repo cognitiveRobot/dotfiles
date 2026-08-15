@@ -24,24 +24,33 @@ return {
 					markdown = { "injected" },
 					rmd = { "styler" },
 					r = { "styler" },
+					sql = { "sqlfluff" },
 				},
 				-- format_on_save = {
 				-- 	timeout_ms = 500,
 				-- 	lsp_format = "fallback",
 				-- },
-				-- formatters = {
-				-- 	ruff_format = {
-				-- 		inherit = false,
-				-- 		command = "ruff",
-				-- 		args = {
-				-- 			"format",
-				-- 			"$FILENAME",
-				-- 			"--line-length=100",
-				-- 			"--stdin-filename",
-				-- 			"$FILENAME",
-				-- 		},
-				-- 	},
-				-- },
+				formatters = {
+					sqlfluff = {
+						command = "sqlfluff",
+						args = { "format", "--dialect=postgres", "-" },
+						stdin = true,
+						cwd = function()
+							return vim.fn.getcwd()
+						end,
+					},
+					-- ruff_format = {
+					-- 	inherit = false,
+					-- 	command = "ruff",
+					-- 	args = {
+					-- 		"format",
+					-- 		"$FILENAME",
+					-- 		"--line-length=100",
+					-- 		"--stdin-filename",
+					-- 		"$FILENAME",
+					-- 	},
+					-- },
+				},
 			})
 			-- Customize the "injected" formatter
 			require("conform").formatters.injected = {

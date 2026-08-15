@@ -174,13 +174,25 @@ return {
 						plugins = {
 							pycodestyle = {
 								maxLineLength = 100, -- This sets how long the line is allowed to be. Also has effect on formatter.
-								ignore = { "E303" },
+								ignore = { "E303", "W503" },
 							},
 							pyflakes = { enabled = false },
 						},
 					},
 				},
 			},
+			-- r_language_server = {
+			-- 	-- not directly using it for quarto (as that is handled by otter and often contains more languanges than just R)
+			-- 	filetypes = { "r", "rmd", "rmarkdown" },
+			-- 	settings = {
+			-- 		r = {
+			-- 			lsp = {
+			-- 				rich_documentation = true,
+			-- 				-- diagnostics = false,
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
 			ts_ls = {},
 			eslint = {},
 			tailwindcss = {},

@@ -51,6 +51,29 @@ return {
 			return "(" .. env_parts[5] .. ")"
 		end
 
+		local lsp_clients = function()
+			local bufnr = vim.api.nvim_get_current_buf()
+			local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
+			if not clients or vim.tbl_isempty(clients) then
+				return "No LSP"
+			end
+
+			local names = {}
+			for _, client in ipairs(clients) do
+				local name = ""
+				if client.name == "r_language_server" then
+					name = "rls"
+				else
+					name = client.name
+				end
+
+				table.insert(names, name)
+			end
+
+			return table.concat(names, ", ")
+		end
+
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
@@ -75,6 +98,12 @@ return {
 					diagnostics,
 					-- { "encoding", cond = hide_in_width },
 					{ "filetype", cond = hide_in_width },
+					{
+						function()
+							return "Buf-" .. vim.api.nvim_get_current_buf()
+						end,
+					},
+					lsp_clients,
 				},
 				lualine_y = { "location" },
 				lualine_z = { "progress" },

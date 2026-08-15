@@ -105,6 +105,40 @@ return {
 
 			vim.keymap.set("n", "<leader>os", get_otter_symbols_lang, { desc = "otter [s]ymbols" })
 
+			-- Delete current Python cell in a .qmd file
+			vim.keymap.set("n", "<leader>dc", function()
+				-- Find the start and end of the current code block
+				print("Delete cell called.")
+				local start_line = nil
+				local end_line = nil
+				local current = vim.fn.line(".")
+				local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+
+				-- Search upward for the start of the code cell
+				for i = current, 1, -1 do
+					if lines[i]:match("^```%{python%}") then
+						start_line = i
+						break
+					end
+				end
+
+				-- Search downward for the end of the code cell
+				for i = current, #lines do
+					if lines[i]:match("^```%s*$") and i > (start_line or 0) then
+						end_line = i
+						break
+					end
+				end
+
+				if start_line and end_line then
+					-- Delete from start to end (adjust for 0-indexing)
+					vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, {})
+					print("Deleted Python cell!")
+				else
+					print("Not inside a Python cell.")
+				end
+			end, { desc = "Delete current Python code cell in Quarto", buffer = true })
+
 			-- local function toggle_conceal()
 			-- 	local lvl = vim.o.conceallevel
 			-- 	if lvl > DefaultConcealLevel then

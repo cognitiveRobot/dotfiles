@@ -60,7 +60,7 @@ require("lazy").setup({
 	-- require("plugins.avante"),
 	require("plugins.quarto-jupyter"),
 	require("plugins.dadbod"),
-	require("plugins.headlines")
+	require("plugins.headlines"),
 })
 vim.cmd.colorscheme("onedark")
 --Cursor highlight didn't work

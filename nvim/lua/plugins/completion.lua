@@ -22,6 +22,18 @@ return {
 			},
 			completion = { documentation = { auto_show = true } },
 			sources = {
+				providers = {
+					buffer = {
+						name = "Buffer",
+						module = "blink.cmp.sources.buffer",
+						opts = {
+							-- key part: include REPL buffer
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs() -- or filter to include REPL
+							end,
+						},
+					},
+				},
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
 

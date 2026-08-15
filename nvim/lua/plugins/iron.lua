@@ -122,16 +122,38 @@ return {
 			local word = vim.fn.expand("<cword>")
 			-- Build command
 			local cmd = ""
-			if key == "type" then
-				cmd = "type(" .. word .. ")"
-			elseif key == "col" then
-				cmd = word .. ".columns"
-			elseif key == "info" then
-				cmd = word .. ".info()"
-			elseif key == "len" then
-				cmd = "len(" .. word .. ")"
+			local ft = vim.bo[0].filetype
+			print(ft)
+			if ft == "py" or ft == "python" or ft == "qmd" or ft == "quarto" then
+				if key == "type" then
+					cmd = "type(" .. word .. ")"
+				elseif key == "col" then
+					cmd = word .. ".columns," .. "len(" .. word .. ".columns" .. ")"
+				elseif key == "minmax" then
+					cmd = word .. ".min()," .. word .. ".max()"
+				elseif key == "info" then
+					cmd = word .. ".info()"
+				elseif key == "describe" then
+					cmd = word .. ".describe()"
+				elseif key == "len" then
+					cmd = "len(" .. word .. ")"
+				elseif key == "shape" then
+					cmd = word .. ".shape"
+				else
+					cmd = ""
+				end
 			else
-				cmd = ""
+				if key == "type" then
+					cmd = "class(" .. word .. ")"
+				elseif key == "col" then
+					cmd = "colnames(" .. word .. ")"
+				elseif key == "info" then
+					cmd = "head(" .. word .. ")"
+				elseif key == "len" then
+					cmd = "nrow(" .. word .. ")"
+				else
+					cmd = ""
+				end
 			end
 			-- Send to REPL
 			iron.send(nil, { cmd })
@@ -151,13 +173,16 @@ return {
 			send_word_for("len")
 		end, { noremap = true, silent = true, desc = "len of under cursor word" })
 
+		vim.keymap.set("n", "<leader>sh", function()
+			send_word_for("shape")
+		end, { noremap = true, silent = true, desc = "narray shape of under cursor word" })
+		vim.keymap.set("n", "<leader>de", function()
+			send_word_for("describe")
+		end, { noremap = true, silent = true, desc = "describe of under cursor word" })
+		vim.keymap.set("n", "<leader>mx", function()
+			send_word_for("minmax")
+		end, { noremap = true, silent = true, desc = "minmax of under cursor word" })
 		vim.keymap.set("n", "<leader>k", "viw<leader>rv", { remap = true, silent = true })
-		vim.keymap.set(
-			"n",
-			"<space><cr><cr>",
-			"<space><cr>mN",
-			{ remap = true, silent = true, desc = "Send code block and go to the next." }
-		)
 
 		vim.keymap.set("n", "<leader>3", "o<Esc>i# %%<Esc>o", { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>4", "o<Esc>i# %% [markdown]<Esc>o", { noremap = true, silent = true })
@@ -177,6 +202,40 @@ return {
 		end
 		vim.keymap.set("n", "<C-n>", goto_next_code_cell, { noremap = true, silent = true })
 		vim.keymap.set("n", "<C-p>", goto_prev_code_cell, { noremap = true, silent = true })
+		vim.keymap.set("n", "<space><cr><cr>", function()
+			local ft = vim.bo.filetype
+			if ft == "python" then
+				iron.send_code_block(true)
+			elseif ft == "quarto" or ft == "r" or ft == "rmd" then
+				iron.send_code_block(true)
+				goto_next_code_cell()
+			else
+				vim.notify("No mapping defined for filetype: " .. ft, vim.log.levels.WARN)
+			end
+		end, { remap = true, silent = true, desc = "Send code block (conditional on filetype)" })
+		-- Function to send all code cells to REPL
+		local send_all_cells = function()
+			-- Go to top of file
+			vim.cmd("normal! gg")
+			goto_next_code_cell()
+
+			-- Loop until no more code cells
+			while true do
+				-- -- Send current cell
+				iron.send_code_block(false)
+
+				-- Move to next code cell
+				local prev_pos = vim.fn.line(".")
+				goto_next_code_cell()
+				local new_pos = vim.fn.line(".")
+
+				-- Stop if we didn't move (no more cells)
+				if new_pos == prev_pos then
+					break
+				end
+			end
+		end
+		vim.keymap.set("n", "<leader>ra", send_all_cells, { remap = true, silent = true })
 		-- iron also has a list of commands, see :h iron-commands for all available commands
 		vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
 		vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")

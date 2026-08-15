@@ -12,9 +12,19 @@ vim.keymap.set("i", "kj", "<ESC>", { silent = true })
 vim.keymap.set("i", "kk", "<ESC>", { silent = true })
 vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- open URL under cursor
 
+vim.keymap.set("n", "<leader>ov", function()
+	vim.cmd("vsplit | edit " .. vim.fn.expand("<cfile>"))
+end, {
+	desc = "Open file under cursor in horizontal split",
+})
+
+
 -- For conciseness
 local opts = { noremap = true, silent = true }
 
+-- kill matplotlib figure server
+vim.keymap.set("n", "<leader>cf", "<cmd>wincmd l<CR>i<C-c><cmd>wincmd h<CR>", opts)
+vim.keymap.set("n", "<leader>cn", "<cmd>qa<CR>", opts)
 -- save file
 vim.keymap.set("n", "<leader>w", "<cmd> w <CR>", opts)
 
