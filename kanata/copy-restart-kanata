@@ -4,10 +4,10 @@ cp config.kbd ~/.config/kanata/config.kbd
 echo "Copied config.kbd"
 systemctl --user daemon-reload
 systemctl --user stop kanata.service
-sleep 1
+sleep 0.5
 systemctl --user enable kanata.service
 systemctl --user start kanata.service
-sleep 1
+sleep 0.1
 systemctl --user status kanata.service
 
 echo "Restarted kanata..."
