@@ -1,12 +1,44 @@
 # dotfiles
 
-## Install
+## Installation
 
+## wezterm
 ```
-ln -s /home/zulfi/workdir/dotfiles/nvim /home/zulfi/.config/nvim
-ln -s /home/zulfi/workdir/dotfiles/tmux /home/zulfi/.config/tmux
-ln -s /home/zulfi/workdir/dotfiles/wezterm /home/zulfi/.config/wezterm
+https://wezterm.org/install/linux.html
+ln -s <Path-to-dotfiles>/wezterm /home/<username>/.config/wezterm
 ```
+## zsh
+- Install zsh 
+```sudo apt install zsh
+chsh -s $(which zsh)
+```
+- Install zoxide - https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
+```
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+export PATH="$PATH:/home/zulfi/.local/bin"
+Add eval "$(zoxide init zsh)" to ~/.zshrc
+```
+- Install fzf
+```
+sudo apt install fzf
+```
+- cp .zshrc file to HOME
+- run `exec zsh`
+## nvim 
+- https://neovim.io/doc/install/
+```
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim-linux-x86_64
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+ln -s <Path-to-dotfiles>/nvim /home/<username>/.config/nvim
+```
+- install gcc - if not there already
+```
+sudo apt install build-essential
+gcc --version
+```
+
 ## tmux
 ```
 - Install tmux
@@ -14,12 +46,9 @@ ln -s /home/zulfi/workdir/dotfiles/wezterm /home/zulfi/.config/wezterm
     - reload conf - tmux source-file ~/.config/tmux/tmux.conf
 - Install plugins -  `prefix` + shift i
 ```
-## zsh
-
-- Install zoxide, fzf
-- cp .zshrc file to HOME
-- restart terminal
-
+```
+ln -s <Path-to-dotfiles>/tmux /home/<username>/.config/tmux
+```
 
 ## Issues
 
