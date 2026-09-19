@@ -24,6 +24,27 @@ sudo apt install fzf
 ```
 - cp .zshrc file to HOME
 - run `exec zsh`
+## keyd
+
+- Install
+```
+git clone https://github.com/rvaiya/keyd
+cd keyd
+make && sudo make install
+sudo systemctl enable --now keyd
+```
+- copy config file.
+```
+sudo cp ./keyd/default.conf /etc/keyd/.
+```
+- reload keyd
+```
+sudo keyd reload
+or 
+sudo keyd.rvaiya reload
+```
+
+
 ## nvim 
 - https://neovim.io/doc/install/
 ```
