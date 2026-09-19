@@ -7,7 +7,8 @@ return {
 		{ "nvim-telescope/telescope.nvim", branch = "master", dependencies = { "nvim-lua/plenary.nvim" } },
 	},
 	lazy = false,
-	branch = "regexp", -- This is the regexp branch, use this for the new version
+	--branch = "regexp", -- This is the regexp branch, use this for the new version
+	branch = "main", -- This is the regexp branch, use this for the new version
 	keys = {
 		-- Keymap to open VenvSelector to pick a venv.
 		{ "<leader>vs", "<cmd>VenvSelect<cr>" },
