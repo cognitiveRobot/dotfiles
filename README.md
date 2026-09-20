@@ -2,16 +2,18 @@
 
 ## Installation
 
-## wezterm
+## terminal - wezterm
 ```
 https://wezterm.org/install/linux.html
 ln -s <Path-to-dotfiles>/wezterm /home/<username>/.config/wezterm
 ```
-## zsh
+## shell - zsh
 - Install zsh 
 ```sudo apt install zsh
 chsh -s $(which zsh)
 ```
+
+### essential CLIs
 - Install zoxide - https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
 ```
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
@@ -22,8 +24,31 @@ Add eval "$(zoxide init zsh)" to ~/.zshrc
 ```
 sudo apt install fzf
 ```
+- Install fd
+```
+sudo apt install fd-find
+https://github.com/sharkdp/fd#installation
+```
+- Install ripgrep
+```
+sudo apt install ripgrep
+```
+
 - cp .zshrc file to HOME
 - run `exec zsh`
+
+## Node
+
+- Install node  
+- Install tree-sitter-cli
+```
+npm install -g tree-sitter-cli
+npm install -g eslint
+```
+- Install python3-venv 
+```
+sudo apt install python3-venv
+```
 ## keyd
 
 - Install
@@ -71,7 +96,7 @@ gcc --version
 ln -s <Path-to-dotfiles>/tmux /home/<username>/.config/tmux
 ```
 
-## Issues
+## issues
 
 - ModuleNotFoundError: No module named 'pylsp.plugins.rope_rename
   ref: https://github.com/python-lsp/python-lsp-server/issues/588#issuecomment-2815787889
